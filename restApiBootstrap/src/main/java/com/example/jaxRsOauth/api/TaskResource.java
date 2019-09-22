@@ -11,16 +11,15 @@ import com.example.jaxRsOauth.dao.TaskDAO;
 import com.example.jaxRsOauth.dao.impl.TaskDAOImpl;
 import com.example.jaxRsOauth.entity.Task;
 
-@Path("/tasks")
+@Path("tasks")
 public class TaskResource {
-	
+
 	TaskDAO taskDAO = new TaskDAOImpl();
-	
+
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<Task> getAllTask(){
+	@Produces(value = MediaType.APPLICATION_JSON)
+	public List<Task> getAllTask() {
 		return taskDAO.getAll();
-		
 	}
-	
+
 }
