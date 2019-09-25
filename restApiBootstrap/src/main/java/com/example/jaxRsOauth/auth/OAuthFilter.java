@@ -70,7 +70,8 @@ public class OAuthFilter implements ContainerRequestFilter {
 
 			// get the access token from the header
 			final String accessToken = authorization.get(0).replaceFirst(AUTHENTICATION_SCHEME + " ", "");
-
+			System.out.println("accessToken: "+accessToken);
+			
 			// if the method has roles, check against the claims in the JWT
 			if (method.isAnnotationPresent(RolesAllowed.class)) {
 				RolesAllowed rolesAnnotation = method.getAnnotation(RolesAllowed.class);
@@ -85,6 +86,10 @@ public class OAuthFilter implements ContainerRequestFilter {
 					return;
 				}
 				
+			}else{
+				requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED)
+						.entity("No Roles Allowed Annotation.").build());
+				return;
 			}
 
 		}

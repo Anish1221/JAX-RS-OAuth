@@ -21,7 +21,6 @@ import javax.ws.rs.ext.Provider;
 
 import org.glassfish.jersey.internal.util.Base64;
 
-import com.mysql.cj.util.Base64Decoder;
 
 //@Provider
 public class BasicAuthenticationFilter implements ContainerRequestFilter {

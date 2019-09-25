@@ -78,6 +78,7 @@ public class JWT {
 		Boolean result = false;
 		//check access token validity against roleSet of the method
 		try{
+			System.out.println("checking validity");
 			//This line will throw an exception if it is not a signed JWS (as expected)
 			// JWT will parse the access token using our secret to get the list of claims to amtch the roles set
 			Claims claims = Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(getSecret()))
@@ -89,7 +90,9 @@ public class JWT {
 			Set<String> claimsRolesSet = new HashSet<>(Arrays.asList(roles.split(",")));
 			rolesSet.retainAll(claimsRolesSet);
 					
-			
+			System.out.println(claims.getId()+" "+claims.getId());
+			System.out.println(claims.getIssuer()+" "+claims.getIssuer());
+			System.out.println(rolesSet.size()>0);
 			if(claims.getId().equals(getId()) && claims.getIssuer().equals(getIssuer()) && rolesSet.size()>0){
 				result = true;
 			}
